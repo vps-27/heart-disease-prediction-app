@@ -31,4 +31,4 @@ It applies Logistic Regression, a simple yet powerful algorithm for binary class
 Live Demo
 
 You can try the app here:
-👉 Live Streamlit App
+👉 Live Streamlit App:https://heart-disease-prediction-app-ofpjjvdwabsfax24x5g8nj.streamlit.app/
