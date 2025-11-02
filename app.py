@@ -38,10 +38,10 @@ if st.button("Predict"):
     # Make prediction
     prediction = model.predict(scaled_input)
     
-    if prediction[0] == 1:
-        st.error("⚠️ Likely to have heart disease")
-    else:
-        st.success("✅ Unlikely to have heart disease")
+if prediction[0] == 1:
+    st.success("✅ Unlikely to have heart disease")
+else:
+    st.error("⚠️ Likely to have heart disease")
 
 
 
