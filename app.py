@@ -4,11 +4,13 @@ import pickle
 
 st.title("❤️ Heart Disease Prediction App")
 
+# Load model and scaler
 model = pickle.load(open("heart_disease_model.pkl", "rb"))
 scaler = pickle.load(open("scaler.pkl", "rb"))
 
 st.header("Enter Patient Details")
 
+# User inputs
 age = st.number_input("Age", 1, 120, 45)
 sex = st.selectbox("Sex", ["Male", "Female"])
 cp = st.selectbox("Chest Pain Type", [0, 1, 2, 3])
@@ -23,19 +25,25 @@ slope = st.selectbox("Slope", [0, 1, 2])
 ca = st.selectbox("Major Vessels", [0, 1, 2, 3])
 thal = st.selectbox("Thalassemia", [0, 1, 2, 3])
 
+# Convert to numeric
 sex = 1 if sex == "Male" else 0
 
-user_input = np.array([[age, sex, cp, trestbps, chol, fbs, restecg,
-                        thalach, exang, oldpeak, slope, ca, thal]])
-
-scaled_input = scaler.transform(user_input)
-prediction = model.predict(scaled_input)
-
+# Predict button
 if st.button("Predict"):
-  if prediction[0] == 1:
-    st.error("Likely to have heart disease")
-else:
-    st.success("Unlikely to have heart disease")
+    # Prepare input
+    user_input = np.array([[age, sex, cp, trestbps, chol, fbs, restecg,
+                            thalach, exang, oldpeak, slope, ca, thal]])
+    scaled_input = scaler.transform(user_input)
+    
+    # Make prediction
+    prediction = model.predict(scaled_input)
+    
+    if prediction[0] == 1:
+        st.error("⚠️ Likely to have heart disease")
+    else:
+        st.success("✅ Unlikely to have heart disease")
+
+
 
 
 
