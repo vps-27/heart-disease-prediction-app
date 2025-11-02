@@ -30,18 +30,23 @@ sex = 1 if sex == "Male" else 0
 
 # Predict button
 if st.button("Predict"):
-    # Prepare input
+    # Prepare the input
     user_input = np.array([[age, sex, cp, trestbps, chol, fbs, restecg,
                             thalach, exang, oldpeak, slope, ca, thal]])
+    
+    # Scale the input
     scaled_input = scaler.transform(user_input)
     
     # Make prediction
     prediction = model.predict(scaled_input)
     
-if prediction[0] == 1:
-    st.success("✅ Unlikely to have heart disease")
-else:
-    st.error("⚠️ Likely to have heart disease")
+    # Show result
+    if prediction[0] == 1:
+        st.success("✅ Unlikely to have heart disease")
+    else:
+        st.error("⚠️ Likely to have heart disease")
+
+
 
 
 
