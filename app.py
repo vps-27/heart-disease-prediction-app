@@ -32,9 +32,12 @@ scaled_input = scaler.transform(user_input)
 prediction = model.predict(scaled_input)
 
 if st.button("Predict"):
-    if prediction[0] == 1:
+  if prediction[0] == 1:
     st.error("Likely to have heart disease")
 else:
     st.success("Unlikely to have heart disease")
+
+
+
 
 
